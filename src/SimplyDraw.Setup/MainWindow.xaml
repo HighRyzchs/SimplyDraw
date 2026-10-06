@@ -1,0 +1,34 @@
+<Window x:Class="SimplyDraw.Setup.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SimplyDraw Setup"
+        Width="480" Height="340"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F4F1EB"
+        FontFamily="Segoe UI"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display"
+        Loaded="OnLoaded">
+  <Grid Margin="32,28">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <TextBlock Text="SimplyDraw" FontSize="28" FontWeight="SemiBold" Foreground="#1C1F26"/>
+    <TextBlock x:Name="Subtitle" Grid.Row="1" Margin="0,8,0,0" TextWrapping="Wrap"
+               Foreground="#5C564E" FontSize="14" LineHeight="20"
+               Text="Checking the latest GitHub release…"/>
+    <StackPanel Grid.Row="2" Margin="0,22,0,0">
+      <TextBlock x:Name="InstalledText" Foreground="#1C1F26" FontSize="14"/>
+      <TextBlock x:Name="LatestText" Margin="0,6,0,0" Foreground="#1C1F26" FontSize="14"/>
+      <TextBlock x:Name="PathText" Margin="0,14,0,0" Foreground="#8A8175" FontSize="12" TextWrapping="Wrap"/>
+    </StackPanel>
+    <ProgressBar x:Name="Progress" Grid.Row="3" Height="6" Minimum="0" Maximum="1" Margin="0,0,0,16"
+                 Foreground="#1C1F26" Background="#E4DDD2" BorderThickness="0"/>
+    <Button x:Name="ActionButton" Grid.Row="4" Height="42" Content="Install" IsEnabled="False" Click="ActionClick"/>
+  </Grid>
+</Window>

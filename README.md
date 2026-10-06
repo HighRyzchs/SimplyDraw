@@ -6,18 +6,20 @@ SimplyDraw is a Windows drawing app for pen tablets and a mouse. The page is an 
 
 ## Download
 
-The current release is **v0.1.1**. Each file is a single `.exe` and does not need a separate .NET install.
+The current release is **v0.1.1**. Download the setup exe once. It asks GitHub for the latest release, installs SimplyDraw, and replaces that exe the next time you run it. Drawings stay where they are.
 
 **[Download SimplyDraw v0.1.1](https://github.com/HighRyzchs/SimplyDraw/releases/latest)**
 
 | File | Use it on |
 | --- | --- |
-| `SimplyDraw-win-x64.exe` | Intel and AMD Windows PCs, including most Surface devices |
-| `SimplyDraw-win-arm64.exe` | ARM Windows PCs |
+| `SimplyDrawSetup-win-x64.exe` | Installer for Intel and AMD Windows PCs |
+| `SimplyDrawSetup-win-arm64.exe` | Installer for ARM Windows PCs |
+| `SimplyDraw-win-x64.exe` | The app by itself, if you do not want the installer |
+| `SimplyDraw-win-arm64.exe` | The app by itself for ARM Windows PCs |
+
+The setup installs to `%LocalAppData%\Programs\SimplyDraw` and adds **SimplyDraw** and **Update SimplyDraw** to the Start menu. Update SimplyDraw is the same setup. It closes the drawing app when you confirm, downloads the latest exe from GitHub, and replaces `SimplyDraw.exe`.
 
 The first launch is slower because the exe unpacks itself. Windows SmartScreen may warn that the file is unrecognized because these builds are not code-signed. Choose **More info**, then **Run anyway**, if you trust the build.
-
-To update, quit SimplyDraw and replace the exe you already run with the new download. Use the same file: `SimplyDraw-win-x64.exe` on Intel and AMD PCs, or `SimplyDraw-win-arm64.exe` on ARM PCs. Windows cannot replace the file while the app is open.
 
 To build one yourself, see [Build from source](#build-from-source).
 
@@ -81,7 +83,7 @@ A self-contained exe:
 ./scripts/publish.ps1 -Runtime win-x64
 ```
 
-The exe is written to `publish/win-x64/SimplyDraw.exe`.
+The exe is written to `publish/win-x64/SimplyDraw.exe`. The installer is `./scripts/publish.ps1 -Runtime win-x64 -Target setup`, written to `publish/win-x64/SimplyDrawSetup.exe`.
 
 ## Project layout
 
@@ -89,6 +91,7 @@ The exe is written to `publish/win-x64/SimplyDraw.exe`.
 | --- | --- |
 | `src/SimplyDraw.Core` | Drawing model, brushes, geometry, undo, and the `.sdraw` file format. No UI. |
 | `src/SimplyDraw.App` | The Windows window, canvas, and pen/touch input. |
+| `src/SimplyDraw.Setup` | The installer. It downloads the latest GitHub release and replaces the installed exe. |
 | `tests/SimplyDraw.Core.Tests` | Tests for zoom, stroke outlines, erasing, files, and undo. |
 | `docs` | How to use the app, how it is built, and how to extend it. |
 
