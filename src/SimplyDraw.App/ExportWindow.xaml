@@ -1,0 +1,28 @@
+<Window x:Class="SimplyDraw.ExportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Export" Width="420" SizeToContent="Height" WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize" Background="#FBF8F3" FontFamily="Segoe UI">
+  <StackPanel Margin="22">
+    <TextBlock Text="Export drawing" FontSize="18" FontWeight="SemiBold" Foreground="#1F2430"/>
+    <TextBlock Text="PNG keeps the paper and brush texture. SVG keeps strokes sharp in other apps." Margin="0,6,0,14" Foreground="#746C62" TextWrapping="Wrap"/>
+    <RadioButton x:Name="ViewOption" Content="Current view" IsChecked="True" Margin="0,0,0,6"/>
+    <RadioButton x:Name="EntireOption" Content="Entire drawing" Margin="0,0,0,12"/>
+    <TextBlock Text="Format" Foreground="#746C62"/>
+    <StackPanel Orientation="Horizontal" Margin="0,6,0,12">
+      <RadioButton x:Name="PngOption" Content="PNG" IsChecked="True" Margin="0,0,16,0"/>
+      <RadioButton x:Name="SvgOption" Content="SVG"/>
+    </StackPanel>
+    <TextBlock Text="PNG scale" Foreground="#746C62"/>
+    <ComboBox x:Name="ScaleBox" Margin="0,6,0,12" SelectedIndex="1">
+      <ComboBoxItem Content="1×"/>
+      <ComboBoxItem Content="2×"/>
+      <ComboBoxItem Content="3×"/>
+    </ComboBox>
+    <CheckBox x:Name="GridBox" Content="Include grid on PNG" IsChecked="False" Margin="0,0,0,16"/>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button Content="Cancel" Width="88" Padding="8" Margin="0,0,8,0" IsCancel="True"/>
+      <Button Content="Export" Width="88" Padding="8" IsDefault="True" Click="ExportClick" Background="#2F6FED" Foreground="White" BorderThickness="0"/>
+    </StackPanel>
+  </StackPanel>
+</Window>

@@ -1,0 +1,13 @@
+bin/
+obj/
+publish/
+.vs/
+.idea/
+*.user
+*.suo
+*.rsuser
+TestResults/
+*.nupkg
+appsettings.*.local.json
+.DS_Store
+Thumbs.db

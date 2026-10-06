@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SimplyDraw.App/SimplyDraw.App.csproj" />
+    <Project Path="src/SimplyDraw.Core/SimplyDraw.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SimplyDraw.Core.Tests/SimplyDraw.Core.Tests.csproj" />
+  </Folder>
+</Solution>

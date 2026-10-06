@@ -1,0 +1,6 @@
+SimplyDraw is licensed under the MIT License. See LICENSE.
+
+Windows builds produced by the GitHub Actions workflow are self-contained.
+They include the .NET runtime, which is licensed under the MIT License:
+
+https://github.com/dotnet/runtime/blob/main/LICENSE.TXT
