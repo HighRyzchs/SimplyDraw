@@ -51,15 +51,23 @@ public static class StrokePainter
 
     private static void DrawRibbon(DrawingContext context, IReadOnlyList<Vec2> centers, IReadOnlyList<double> radii, Brush brush)
     {
-        var polygon = RibbonBuilder.Build(centers, radii);
-        if (polygon.Count < 3)
+        var figures = StrokeMesh.Build(centers, radii);
+        if (figures.Count == 0)
             return;
 
-        var geometry = new StreamGeometry();
+        // One filled shape. NonZero keeps ink where the pen crosses itself;
+        // a single outline with EvenOdd punches a hole at every crossing.
+        var geometry = new StreamGeometry { FillRule = FillRule.Nonzero };
         using (var geometryContext = geometry.Open())
         {
-            geometryContext.BeginFigure(ToPoint(polygon[0]), true, true);
-            geometryContext.PolyLineTo(polygon.Skip(1).Select(ToPoint).ToList(), true, true);
+            foreach (var figure in figures)
+            {
+                if (figure.Length < 3)
+                    continue;
+
+                geometryContext.BeginFigure(ToPoint(figure[0]), true, true);
+                geometryContext.PolyLineTo(figure.Skip(1).Select(ToPoint).ToList(), true, true);
+            }
         }
 
         geometry.Freeze();

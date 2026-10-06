@@ -6,9 +6,9 @@ SimplyDraw is a Windows drawing app for pen tablets and a mouse. The page is an 
 
 ## Download
 
-The current release is **v0.1**. Each file is a single `.exe` and does not need a separate .NET install.
+The current release is **v0.1.1**. Each file is a single `.exe` and does not need a separate .NET install.
 
-**[Download SimplyDraw v0.1](https://github.com/HighRyzchs/SimplyDraw/releases/latest)**
+**[Download SimplyDraw v0.1.1](https://github.com/HighRyzchs/SimplyDraw/releases/latest)**
 
 | File | Use it on |
 | --- | --- |
@@ -16,6 +16,8 @@ The current release is **v0.1**. Each file is a single `.exe` and does not need 
 | `SimplyDraw-win-arm64.exe` | ARM Windows PCs |
 
 The first launch is slower because the exe unpacks itself. Windows SmartScreen may warn that the file is unrecognized because these builds are not code-signed. Choose **More info**, then **Run anyway**, if you trust the build.
+
+To update, quit SimplyDraw and replace the exe you already run with the new download. Use the same file: `SimplyDraw-win-x64.exe` on Intel and AMD PCs, or `SimplyDraw-win-arm64.exe` on ARM PCs. Windows cannot replace the file while the app is open.
 
 To build one yourself, see [Build from source](#build-from-source).
 
