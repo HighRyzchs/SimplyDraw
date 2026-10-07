@@ -156,23 +156,13 @@ public static class SvgWriter
             return;
 
         var centers = stroke.Points.Select(point => point.ToVec()).ToList();
-        var figures = StrokeMesh.Build(centers, StrokeMetrics.Radii(stroke));
-        if (figures.Count == 0)
+        var polygon = RibbonBuilder.Build(centers, StrokeMetrics.Radii(stroke));
+        if (polygon.Count < 3)
             return;
 
-        builder.Append(CultureInfo.InvariantCulture, $"<path fill=\"{hex}\" fill-opacity=\"{opacity}\" fill-rule=\"nonzero\" d=\"");
-        foreach (var figure in figures)
-        {
-            if (figure.Length < 3)
-                continue;
-
-            builder.Append(CultureInfo.InvariantCulture, $"M{figure[0].X:0.##} {figure[0].Y:0.##}");
-            for (var i = 1; i < figure.Length; i++)
-                builder.Append(CultureInfo.InvariantCulture, $"L{figure[i].X:0.##} {figure[i].Y:0.##}");
-            builder.Append('Z');
-        }
-
-        builder.AppendLine("\"/>");
+        builder.Append("<polygon points=\"");
+        AppendPoints(builder, polygon);
+        builder.AppendLine(CultureInfo.InvariantCulture, $"\" fill=\"{hex}\" fill-opacity=\"{opacity}\" fill-rule=\"nonzero\" stroke=\"none\"/>");
     }
 
     private static void Stamps(StringBuilder builder, Stroke stroke, string hex, string opacity)

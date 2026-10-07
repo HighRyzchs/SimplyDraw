@@ -6,9 +6,9 @@ SimplyDraw is a Windows drawing app for pen tablets and a mouse. The page is an 
 
 ## Download
 
-The current release is **v0.1.1**. Download the setup exe once. It asks GitHub for the latest release, installs SimplyDraw, and replaces that exe the next time you run it. Drawings stay where they are.
+The current release is **v0.1.2**. Download the setup exe once. It asks GitHub for the latest release, installs SimplyDraw, and replaces that exe the next time you run it. Drawings stay where they are.
 
-**[Download SimplyDraw v0.1.1](https://github.com/HighRyzchs/SimplyDraw/releases/latest)**
+**[Download SimplyDraw v0.1.2](https://github.com/HighRyzchs/SimplyDraw/releases/latest)**
 
 | File | Use it on |
 | --- | --- |

@@ -39,25 +39,6 @@ public class GeometryTests
     }
 
     [Fact]
-    public void Stroke_mesh_still_covers_ink_where_the_pen_crosses_itself()
-    {
-        var centers = new List<Vec2>
-        {
-            new(0, 0),
-            new(80, 0),
-            new(80, 30),
-            new(10, 30),
-            new(10, 0),
-            new(90, 0)
-        };
-        var radii = Enumerable.Repeat(6d, centers.Count).ToList();
-        var figures = StrokeMesh.Build(centers, radii);
-
-        Assert.Contains(figures, figure => GeometryUtil.PointInPolygon(new Vec2(40, 1), figure));
-        Assert.DoesNotContain(figures, figure => GeometryUtil.PointInPolygon(new Vec2(40, 40), figure));
-    }
-
-    [Fact]
     public void Hit_test_finds_a_nearby_stroke_and_misses_empty_space()
     {
         var stroke = InkLine();
@@ -217,7 +198,7 @@ public class DocumentTests
         var svg = SvgWriter.Export(document);
         Assert.Contains("<svg", svg, StringComparison.Ordinal);
         Assert.Contains("#112233", svg, StringComparison.Ordinal);
-        Assert.Contains("<path", svg, StringComparison.Ordinal);
+        Assert.Contains("<polygon", svg, StringComparison.Ordinal);
         Assert.Contains("fill-rule=\"nonzero\"", svg, StringComparison.Ordinal);
     }
 

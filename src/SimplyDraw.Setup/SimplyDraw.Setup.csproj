@@ -8,8 +8,8 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>SimplyDraw.Setup</RootNamespace>
     <AssemblyName>SimplyDrawSetup</AssemblyName>
-    <Version>0.1.1</Version>
-    <FileVersion>0.1.1.0</FileVersion>
+    <Version>0.1.2</Version>
+    <FileVersion>0.1.2.0</FileVersion>
     <Product>SimplyDraw Setup</Product>
     <Company>SimplyDraw</Company>
     <Description>Installs and updates SimplyDraw from the latest GitHub release.</Description>

@@ -8,62 +8,88 @@
         MinWidth="1024" MinHeight="680"
         WindowStartupLocation="CenterScreen"
         Background="#F3EEE4"
-        FontFamily="Segoe UI"
+        FontFamily="Segoe UI Variable Text, Segoe UI"
         UseLayoutRounding="True"
         TextOptions.TextFormattingMode="Display"
         AllowDrop="True">
   <Grid>
     <canvas:InfiniteCanvas x:Name="Surface"/>
 
-    <Border VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,14,0,0" Background="#FFFBF8F3"
-            BorderBrush="#E6DFD3" BorderThickness="1" CornerRadius="16" Padding="8,6">
+    <Border VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,16,0,0"
+            BorderThickness="1" CornerRadius="20" Padding="8,6">
+      <Border.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+          <GradientStop Color="#221E1A" Offset="0"/>
+          <GradientStop Color="#141210" Offset="1"/>
+        </LinearGradientBrush>
+      </Border.Background>
+      <Border.BorderBrush>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+          <GradientStop Color="#5A4A3E" Offset="0"/>
+          <GradientStop Color="#2A241F" Offset="1"/>
+        </LinearGradientBrush>
+      </Border.BorderBrush>
       <Border.Effect>
         <StaticResource ResourceKey="FloatShadow"/>
       </Border.Effect>
       <StackPanel Orientation="Horizontal">
-        <Button x:Name="LogoButton" Style="{StaticResource TextButton}" Click="LogoClick" ToolTip="File menu">
+        <Button x:Name="LogoButton" Style="{StaticResource TextButton}" Click="LogoClick" ToolTip="File menu" Padding="8,0,12,0">
           <StackPanel Orientation="Horizontal">
-            <Border Width="22" Height="22" CornerRadius="7" Background="#2F6FED" Margin="0,0,8,0">
-              <Path Data="M6,15 C8,9 14,8 16,12" Stroke="White" StrokeThickness="1.6" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+            <Border Width="28" Height="28" CornerRadius="14" BorderBrush="#C4623A" BorderThickness="1.2" Margin="0,0,10,0">
+              <Viewbox Width="15" Height="15">
+                <Path Data="M1,11 C4,3 12,2 14,8" Stroke="#F6F1E8" StrokeThickness="1.6"
+                      StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+              </Viewbox>
             </Border>
-            <TextBlock Text="SimplyDraw" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="#1F2430"/>
+            <TextBlock Text="SimplyDraw" FontWeight="Medium" FontSize="14" VerticalAlignment="Center" Foreground="#F6F1E8"/>
           </StackPanel>
         </Button>
-        <Border Width="1" Background="#E6DFD3" Margin="8,6"/>
+        <Border Width="1" Background="#3A342C" Margin="6,8"/>
         <Button x:Name="NewButton" Style="{StaticResource IconButton}" Click="NewClick" ToolTip="New (Ctrl+N)"/>
         <Button x:Name="OpenButton" Style="{StaticResource IconButton}" Click="OpenClick" ToolTip="Open (Ctrl+O)"/>
         <Button x:Name="SaveButton" Style="{StaticResource IconButton}" Click="SaveClick" ToolTip="Save (Ctrl+S)"/>
-        <Border Width="1" Background="#E6DFD3" Margin="8,6"/>
+        <Border Width="1" Background="#3A342C" Margin="6,8"/>
         <Button x:Name="UndoButton" Style="{StaticResource IconButton}" Click="UndoClick" ToolTip="Undo (Ctrl+Z)"/>
         <Button x:Name="RedoButton" Style="{StaticResource IconButton}" Click="RedoClick" ToolTip="Redo (Ctrl+Y)"/>
-        <Border Width="1" Background="#E6DFD3" Margin="8,6"/>
+        <Border Width="1" Background="#3A342C" Margin="6,8"/>
         <Button x:Name="ZoomOutButton" Style="{StaticResource IconButton}" Click="ZoomOutClick" ToolTip="Zoom out"/>
-        <TextBlock x:Name="ZoomLabel" Width="58" Text="100%" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="#1F2430"/>
+        <Border Background="#241F1B" CornerRadius="9" Padding="2,0" Margin="2,4" VerticalAlignment="Center">
+          <TextBlock x:Name="ZoomLabel" Width="52" Text="100%" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="#F3EDE4" FontSize="12"/>
+        </Border>
         <Button x:Name="ZoomInButton" Style="{StaticResource IconButton}" Click="ZoomInClick" ToolTip="Zoom in"/>
         <Button x:Name="FitButton" Style="{StaticResource IconButton}" Click="FitClick" ToolTip="Fit drawing (Ctrl+1)"/>
-        <Border Width="1" Background="#E6DFD3" Margin="8,6"/>
-        <TextBlock Text="Touch" VerticalAlignment="Center" Margin="4,0,6,0" Foreground="#746C62"/>
-        <ToggleButton x:Name="TouchMoveButton" Content="Move" Style="{StaticResource ToolToggle}" Width="58" Click="TouchMoveClick" ToolTip="One finger moves the page"/>
-        <ToggleButton x:Name="TouchSelectButton" Content="Select" Style="{StaticResource ToolToggle}" Width="64" Margin="4,0,0,0" Click="TouchSelectClick" ToolTip="One finger selects marks"/>
-        <Border Width="1" Background="#E6DFD3" Margin="8,6"/>
+        <Border Width="1" Background="#3A342C" Margin="6,8"/>
+        <Border Background="#100E0C" CornerRadius="12" Padding="3" Margin="4,2" VerticalAlignment="Center">
+          <StackPanel Orientation="Horizontal">
+            <ToggleButton x:Name="TouchMoveButton" Content="Move" Style="{StaticResource ToolToggle}" Width="62" Click="TouchMoveClick" ToolTip="One finger moves the page"/>
+            <ToggleButton x:Name="TouchSelectButton" Content="Select" Style="{StaticResource ToolToggle}" Width="66" Click="TouchSelectClick" ToolTip="One finger selects marks"/>
+          </StackPanel>
+        </Border>
+        <Border Width="1" Background="#3A342C" Margin="6,8"/>
         <Button x:Name="ViewButton" Style="{StaticResource TextButton}" Content="View" Click="ViewClick" ToolTip="Paper, grid, and snap"/>
-        <Button x:Name="ExportButton" Style="{StaticResource TextButton}" Content="Export" Margin="4,0,0,0" Click="ExportClick" ToolTip="Export PNG or SVG (Ctrl+E)"/>
+        <Button x:Name="ExportButton" Style="{StaticResource TextButton}" Content="Export" Click="ExportClick" ToolTip="Export PNG or SVG (Ctrl+E)"/>
       </StackPanel>
     </Border>
 
-    <Border x:Name="LayersCard" Width="250" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,0,0"
-            Background="#FFFBF8F3" BorderBrush="#E6DFD3" BorderThickness="1" CornerRadius="16" Padding="12">
+    <Border x:Name="LayersCard" Width="262" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="18,0,0,0"
+            BorderBrush="#3A342C" BorderThickness="1" CornerRadius="18" Padding="12">
+      <Border.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+          <GradientStop Color="#221E1A" Offset="0"/>
+          <GradientStop Color="#161310" Offset="1"/>
+        </LinearGradientBrush>
+      </Border.Background>
       <Border.Effect>
         <StaticResource ResourceKey="FloatShadow"/>
       </Border.Effect>
       <DockPanel>
-        <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
-          <TextBlock Text="Layers" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="#1F2430"/>
+        <DockPanel DockPanel.Dock="Top" Margin="2,2,0,10">
+          <TextBlock Text="LAYERS" FontSize="11" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="#C4623A"/>
           <Button x:Name="CloseLayersButton" Style="{StaticResource IconButton}" HorizontalAlignment="Right" Click="CloseLayersClick" ToolTip="Hide layers"/>
         </DockPanel>
-        <StackPanel DockPanel.Dock="Bottom" Margin="0,8,0,0">
-          <DockPanel Margin="0,0,0,6">
-            <TextBlock Text="Opacity" Foreground="#746C62" VerticalAlignment="Center" Width="58"/>
+        <StackPanel DockPanel.Dock="Bottom" Margin="0,10,0,0">
+          <DockPanel Margin="2,0,2,8">
+            <TextBlock Text="Opacity" Foreground="#A3988C" VerticalAlignment="Center" Width="58" FontSize="12"/>
             <Slider x:Name="LayerOpacity" Style="{StaticResource ThinSlider}" Minimum="0.05" Maximum="1" Value="1"
                     PreviewMouseLeftButtonDown="LayerOpacityDown" PreviewMouseLeftButtonUp="LayerOpacityUp" ValueChanged="LayerOpacityChanged"/>
           </DockPanel>
@@ -81,58 +107,82 @@
       </DockPanel>
     </Border>
 
-    <Button x:Name="LayersToggle" Content="Layers" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,0,0"
-            Visibility="Collapsed" Padding="12,10" Background="#FFFBF8F3" BorderBrush="#E6DFD3" BorderThickness="1"
-            Cursor="Hand" Click="ShowLayersClick"/>
+    <Button x:Name="LayersToggle" Content="Layers" Style="{StaticResource PillButton}"
+            HorizontalAlignment="Left" VerticalAlignment="Center" Margin="18,0,0,0"
+            Visibility="Collapsed" Click="ShowLayersClick"/>
 
-    <Border x:Name="HintCard" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="16,0,0,108" MaxWidth="360"
-            Background="#FF1F2430" CornerRadius="14" Padding="14">
+    <Border x:Name="HintCard" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="18,0,0,108" MaxWidth="340"
+            Background="#161310" BorderBrush="#3A342C" BorderThickness="1" CornerRadius="16" Padding="16">
+      <Border.Effect>
+        <StaticResource ResourceKey="FloatShadow"/>
+      </Border.Effect>
       <StackPanel>
-        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="13" LineHeight="18"
+        <TextBlock TextWrapping="Wrap" Foreground="#F3EDE4" FontSize="13" LineHeight="19"
                    Text="The pen uses the tool you picked. One finger moves the page, and a pinch zooms. Switch Touch to Select when you want a finger to select marks instead. Right-drag or hold Space to pan with a mouse."/>
-        <Button Content="Got it" HorizontalAlignment="Right" Margin="0,10,0,0" Padding="12,4" Click="DismissHintClick"
-                Background="#2F6FED" Foreground="White" BorderThickness="0" Cursor="Hand"/>
+        <Button Content="Got it" Style="{StaticResource AccentButton}" HorizontalAlignment="Right" Margin="0,12,0,0" Click="DismissHintClick"/>
       </StackPanel>
     </Border>
 
-    <Border VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="16,0,16,16" Background="#FFFBF8F3"
-            BorderBrush="#E6DFD3" BorderThickness="1" CornerRadius="18" Padding="8">
+    <Border VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="16,0,16,18"
+            BorderThickness="1" CornerRadius="22" Padding="8,6">
+      <Border.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+          <GradientStop Color="#221E1A" Offset="0"/>
+          <GradientStop Color="#141210" Offset="1"/>
+        </LinearGradientBrush>
+      </Border.Background>
+      <Border.BorderBrush>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+          <GradientStop Color="#5A4A3E" Offset="0"/>
+          <GradientStop Color="#2A241F" Offset="1"/>
+        </LinearGradientBrush>
+      </Border.BorderBrush>
       <Border.Effect>
         <StaticResource ResourceKey="FloatShadow"/>
       </Border.Effect>
       <StackPanel Orientation="Horizontal">
         <StackPanel x:Name="ToolHost" Orientation="Horizontal"/>
-        <Border Width="1" Background="#E6DFD3" Margin="8,6"/>
+        <Border Width="1" Background="#3A342C" Margin="8,8"/>
         <StackPanel x:Name="DrawOptions" Orientation="Horizontal">
           <Button x:Name="BrushButton" Style="{StaticResource TextButton}" Click="BrushClick" ToolTip="Brushes" MinWidth="108"/>
           <Slider x:Name="SizeSlider" Width="120" Style="{StaticResource ThinSlider}" ValueChanged="BrushSizeChanged"/>
-          <TextBlock x:Name="SizeLabel" Width="52" VerticalAlignment="Center" Margin="4,0,8,0" Foreground="#1F2430"/>
+          <TextBlock x:Name="SizeLabel" Width="52" VerticalAlignment="Center" Margin="2,0,8,0" Foreground="#F3EDE4" FontSize="12"/>
           <Slider x:Name="OpacitySlider" Width="90" Style="{StaticResource ThinSlider}" Minimum="0.05" Maximum="1" ValueChanged="OpacityChanged"/>
-          <TextBlock x:Name="OpacityLabel" Width="40" VerticalAlignment="Center" Foreground="#1F2430"/>
+          <TextBlock x:Name="OpacityLabel" Width="40" VerticalAlignment="Center" Foreground="#F3EDE4" FontSize="12"/>
         </StackPanel>
         <StackPanel x:Name="EraseOptions" Orientation="Horizontal" Visibility="Collapsed">
-          <TextBlock Text="Eraser" VerticalAlignment="Center" Margin="4,0" Foreground="#746C62"/>
+          <TextBlock Text="Eraser" VerticalAlignment="Center" Margin="6,0" Foreground="#A3988C" FontSize="12"/>
           <Slider x:Name="EraserSlider" Width="140" Style="{StaticResource ThinSlider}" Minimum="4" Maximum="120" ValueChanged="EraserChanged"/>
-          <ToggleButton x:Name="WholeStrokeToggle" Content="Whole mark" Margin="8,0,0,0" Padding="10,0" Height="36" Click="WholeStrokeClick" ToolTip="Remove an entire mark instead of splitting it"/>
+          <ToggleButton x:Name="WholeStrokeToggle" Content="Whole mark" Style="{StaticResource ToolToggle}" Width="104" Margin="6,0,0,0" Click="WholeStrokeClick" ToolTip="Remove an entire mark instead of splitting it"/>
         </StackPanel>
         <StackPanel x:Name="SelectOptions" Orientation="Horizontal" Visibility="Collapsed">
-          <ToggleButton x:Name="RectSelectButton" Content="Box" Style="{StaticResource ToolToggle}" Width="52" Click="RectSelectClick"/>
-          <ToggleButton x:Name="LassoSelectButton" Content="Lasso" Style="{StaticResource ToolToggle}" Width="64" Margin="4,0,0,0" Click="LassoSelectClick"/>
-          <Button x:Name="DuplicateButton" Style="{StaticResource IconButton}" Margin="8,0,0,0" Click="DuplicateClick" ToolTip="Duplicate (Ctrl+D)"/>
+          <Border Background="#100E0C" CornerRadius="12" Padding="3" Margin="4,2" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+              <ToggleButton x:Name="RectSelectButton" Content="Box" Style="{StaticResource ToolToggle}" Width="52" Click="RectSelectClick"/>
+              <ToggleButton x:Name="LassoSelectButton" Content="Lasso" Style="{StaticResource ToolToggle}" Width="64" Click="LassoSelectClick"/>
+            </StackPanel>
+          </Border>
+          <Button x:Name="DuplicateButton" Style="{StaticResource IconButton}" Margin="6,0,0,0" Click="DuplicateClick" ToolTip="Duplicate (Ctrl+D)"/>
           <Button x:Name="DeleteSelectionButton" Style="{StaticResource IconButton}" Click="DeleteSelectionClick" ToolTip="Delete"/>
         </StackPanel>
-        <Border Width="1" Background="#E6DFD3" Margin="8,6"/>
+        <Border Width="1" Background="#3A342C" Margin="8,8"/>
         <Button x:Name="ColorButton" Style="{StaticResource IconButton}" Width="44" Height="44" Click="ColorClick" ToolTip="Colors">
-          <Ellipse x:Name="ColorOrb" Width="22" Height="22" Stroke="White" StrokeThickness="2"/>
+          <Grid Width="26" Height="26">
+            <Ellipse Stroke="#F3E6D4" StrokeThickness="1.4"/>
+            <Ellipse x:Name="ColorOrb" Width="18" Height="18"/>
+          </Grid>
         </Button>
       </StackPanel>
     </Border>
 
-    <TextBlock x:Name="StatusText" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,78"
+    <TextBlock x:Name="StatusText" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="22,0,0,86"
                Foreground="#8A8175" FontSize="12"/>
 
-    <Popup x:Name="FilePopup" PlacementTarget="{Binding ElementName=LogoButton}" Placement="Bottom" StaysOpen="False" AllowsTransparency="True">
-      <Border Background="#FFFBF8F3" BorderBrush="#E6DFD3" BorderThickness="1" CornerRadius="12" Padding="6" MinWidth="220" Margin="0,8,0,0">
+    <Popup x:Name="FilePopup" PlacementTarget="{Binding ElementName=LogoButton}" Placement="Bottom" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
+      <Border Background="#1C1916" BorderBrush="#3A342C" BorderThickness="1" CornerRadius="14" Padding="6" MinWidth="232" Margin="8">
+        <Border.Effect>
+          <StaticResource ResourceKey="FloatShadow"/>
+        </Border.Effect>
         <StackPanel>
           <Button Content="New" Style="{StaticResource MenuButton}" Click="NewClick"/>
           <Button Content="Open…" Style="{StaticResource MenuButton}" Click="OpenClick"/>
@@ -140,39 +190,46 @@
           <Button Content="Save as…" Style="{StaticResource MenuButton}" Click="SaveAsClick"/>
           <Button Content="Import image…" Style="{StaticResource MenuButton}" Click="ImportClick"/>
           <Button Content="Demo sketch" Style="{StaticResource MenuButton}" Click="DemoClick"/>
-          <Separator Margin="4"/>
-          <TextBlock Text="Recent" Margin="10,4" Foreground="#746C62" FontSize="12"/>
+          <Border Height="1" Background="#3A342C" Margin="8,6"/>
+          <TextBlock Text="RECENT" Margin="12,2,10,4" Foreground="#C4623A" FontSize="11"/>
           <StackPanel x:Name="RecentList"/>
-          <Separator Margin="4"/>
+          <Border Height="1" Background="#3A342C" Margin="8,6"/>
           <Button Content="Shortcuts" Style="{StaticResource MenuButton}" Click="ShortcutsClick"/>
           <Button Content="About" Style="{StaticResource MenuButton}" Click="AboutClick"/>
         </StackPanel>
       </Border>
     </Popup>
 
-    <Popup x:Name="ViewPopup" PlacementTarget="{Binding ElementName=ViewButton}" Placement="Bottom" StaysOpen="False" AllowsTransparency="True">
-      <Border Background="#FFFBF8F3" BorderBrush="#E6DFD3" BorderThickness="1" CornerRadius="12" Padding="14" Width="260" Margin="0,8,0,0">
+    <Popup x:Name="ViewPopup" PlacementTarget="{Binding ElementName=ViewButton}" Placement="Bottom" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
+      <Border Background="#1C1916" BorderBrush="#3A342C" BorderThickness="1" CornerRadius="14" Padding="16" Width="268" Margin="8">
+        <Border.Effect>
+          <StaticResource ResourceKey="FloatShadow"/>
+        </Border.Effect>
         <StackPanel>
-          <TextBlock Text="Paper" Foreground="#746C62"/>
-          <ComboBox x:Name="PaperBox" Margin="0,4,0,10" SelectionChanged="PaperChanged"/>
-          <TextBlock Text="Grid" Foreground="#746C62"/>
-          <ComboBox x:Name="GridBox" Margin="0,4,0,10" SelectionChanged="GridChanged"/>
-          <TextBlock Text="Spacing" Foreground="#746C62"/>
-          <Slider x:Name="SpacingSlider" Style="{StaticResource ThinSlider}" Minimum="12" Maximum="96" Margin="0,6,0,10" ValueChanged="SpacingChanged"/>
-          <CheckBox x:Name="SnapBox" Content="Snap shapes to the grid" Checked="SnapChanged" Unchecked="SnapChanged"/>
+          <TextBlock Text="PAPER" Foreground="#C4623A" FontSize="11" FontWeight="SemiBold"/>
+          <ComboBox x:Name="PaperBox" Style="{StaticResource ChromeCombo}" Margin="0,6,0,12" SelectionChanged="PaperChanged"/>
+          <TextBlock Text="GRID" Foreground="#C4623A" FontSize="11" FontWeight="SemiBold"/>
+          <ComboBox x:Name="GridBox" Style="{StaticResource ChromeCombo}" Margin="0,6,0,12" SelectionChanged="GridChanged"/>
+          <TextBlock Text="SPACING" Foreground="#C4623A" FontSize="11" FontWeight="SemiBold"/>
+          <Slider x:Name="SpacingSlider" Style="{StaticResource ThinSlider}" Minimum="12" Maximum="96" Margin="0,8,0,12" ValueChanged="SpacingChanged"/>
+          <CheckBox x:Name="SnapBox" Style="{StaticResource ChromeCheck}" Content="Snap shapes to the grid" Checked="SnapChanged" Unchecked="SnapChanged"/>
         </StackPanel>
       </Border>
     </Popup>
 
-    <Popup x:Name="BrushPopup" PlacementTarget="{Binding ElementName=BrushButton}" Placement="Top" StaysOpen="False" AllowsTransparency="True">
-      <Border Background="#FFFBF8F3" BorderBrush="#E6DFD3" BorderThickness="1" CornerRadius="14" Padding="10" Width="320" Margin="0,0,0,8">
+    <Popup x:Name="BrushPopup" PlacementTarget="{Binding ElementName=BrushButton}" Placement="Top" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
+      <Border Background="#1C1916" BorderBrush="#3A342C" BorderThickness="1" CornerRadius="14" Padding="10" Width="320" Margin="8">
+        <Border.Effect>
+          <StaticResource ResourceKey="FloatShadow"/>
+        </Border.Effect>
         <StackPanel>
           <ScrollViewer MaxHeight="320" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="BrushList"/>
           </ScrollViewer>
-          <DockPanel Margin="0,8,0,0">
-            <TextBlock Text="Smoothing" Width="84" VerticalAlignment="Center" Foreground="#746C62"/>
-            <TextBlock x:Name="SmoothLabel" Width="36" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+          <Border Height="1" Background="#3A342C" Margin="4,8,4,8"/>
+          <DockPanel>
+            <TextBlock Text="Smoothing" Width="84" VerticalAlignment="Center" Foreground="#A3988C" FontSize="12"/>
+            <TextBlock x:Name="SmoothLabel" Width="36" DockPanel.Dock="Right" VerticalAlignment="Center" Foreground="#F3EDE4" FontSize="12"/>
             <Slider x:Name="SmoothSlider" Style="{StaticResource ThinSlider}" Minimum="0" Maximum="0.92" ValueChanged="SmoothChanged"/>
           </DockPanel>
         </StackPanel>
@@ -188,8 +245,8 @@
     </Popup>
 
     <Popup x:Name="TextPopup" PlacementTarget="{Binding ElementName=Surface}" Placement="Relative" StaysOpen="True" AllowsTransparency="True">
-      <TextBox x:Name="InlineText" MinWidth="160" MinHeight="36" Padding="6" AcceptsReturn="True" TextWrapping="Wrap"
-               BorderBrush="#2F6FED" BorderThickness="1.5" Background="#FFFFFFF2" FontSize="28"
+      <TextBox x:Name="InlineText" MinWidth="160" MinHeight="36" Padding="8,4" AcceptsReturn="True" TextWrapping="Wrap"
+               BorderBrush="#C4623A" BorderThickness="1.5" Background="#FFFFFFF2" Foreground="#1A1612" FontSize="28" CaretBrush="#1A1612"
                LostFocus="InlineTextLostFocus" PreviewKeyDown="InlineTextKeyDown"/>
     </Popup>
   </Grid>

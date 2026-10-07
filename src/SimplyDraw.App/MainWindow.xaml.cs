@@ -229,11 +229,8 @@ public partial class MainWindow : Window
             var id = brush.Id;
             var button = new Button
             {
+                Style = (Style)FindResource("MenuButton"),
                 HorizontalContentAlignment = HorizontalAlignment.Left,
-                Background = Brushes.Transparent,
-                BorderThickness = new Thickness(0),
-                Padding = new Thickness(8, 6, 8, 6),
-                Cursor = Cursors.Hand,
                 ToolTip = brush.Blurb
             };
             var stack = new StackPanel();
@@ -388,8 +385,10 @@ public partial class MainWindow : Window
             var row = new Border
             {
                 Background = active ? (Brush)FindResource("AccentSoftBrush") : Brushes.Transparent,
-                CornerRadius = new CornerRadius(8),
-                Padding = new Thickness(4),
+                BorderBrush = active ? (Brush)FindResource("AccentBrush") : Brushes.Transparent,
+                BorderThickness = new Thickness(2, 0, 0, 0),
+                CornerRadius = new CornerRadius(10),
+                Padding = new Thickness(6, 3, 4, 3),
                 Margin = new Thickness(0, 2, 0, 2),
                 Cursor = Cursors.Hand
             };
@@ -406,6 +405,7 @@ public partial class MainWindow : Window
                 BorderThickness = new Thickness(0),
                 Background = Brushes.Transparent,
                 Foreground = (Brush)FindResource("InkBrush"),
+                CaretBrush = (Brush)FindResource("AccentBrush"),
                 VerticalAlignment = VerticalAlignment.Center
             };
             var capturedId = layer.Id;

@@ -148,55 +148,6 @@ public static class RibbonBuilder
     }
 }
 
-public static class StrokeMesh
-{
-    public static List<Vec2[]> Build(IReadOnlyList<Vec2> centers, IReadOnlyList<double> radii)
-    {
-        var figures = new List<Vec2[]>();
-        var count = Math.Min(centers.Count, radii.Count);
-        if (count == 0)
-            return figures;
-
-        for (var i = 0; i < count; i++)
-            figures.Add(Circle(centers[i], Math.Max(0.15, radii[i])));
-
-        for (var i = 1; i < count; i++)
-        {
-            var start = centers[i - 1];
-            var end = centers[i];
-            var delta = end - start;
-            if (delta.LengthSquared < 1e-8)
-                continue;
-
-            var normal = new Vec2(-delta.Y, delta.X).NormalizedOr(new Vec2(0, 1));
-            var startRadius = Math.Max(0.15, radii[i - 1]);
-            var endRadius = Math.Max(0.15, radii[i]);
-            figures.Add(
-            [
-                start + normal * startRadius,
-                end + normal * endRadius,
-                end - normal * endRadius,
-                start - normal * startRadius
-            ]);
-        }
-
-        return figures;
-    }
-
-    private static Vec2[] Circle(Vec2 center, double radius)
-    {
-        var steps = radius < 2 ? 8 : radius < 8 ? 12 : radius < 24 ? 16 : 22;
-        var points = new Vec2[steps];
-        for (var i = 0; i < steps; i++)
-        {
-            var angle = i / (double)steps * Math.PI * 2;
-            points[i] = new Vec2(center.X + Math.Cos(angle) * radius, center.Y + Math.Sin(angle) * radius);
-        }
-
-        return points;
-    }
-}
-
 public static class StampLayout
 {
     public readonly record struct Stamp(Vec2 Center, double Radius, double Pressure, int Index);

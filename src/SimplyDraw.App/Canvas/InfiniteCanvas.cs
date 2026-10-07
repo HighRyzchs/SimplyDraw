@@ -689,7 +689,7 @@ public partial class InfiniteCanvas : FrameworkElement
     private void RedrawOverlay()
     {
         using var context = _overlay.RenderOpen();
-        var accent = Frozen("#2F6FED");
+        var accent = Frozen("#C4623A");
         var white = Frozen("#FFFFFF");
         var pen = new Pen(accent, 1.4);
         pen.Freeze();
@@ -716,7 +716,7 @@ public partial class InfiniteCanvas : FrameworkElement
         if (_marquee is { IsEmpty: false } marquee)
         {
             var rect = ToScreen(marquee);
-            context.DrawRectangle(new SolidColorBrush(Color.FromArgb(28, 47, 111, 237)), dashed, rect);
+            context.DrawRectangle(new SolidColorBrush(Color.FromArgb(36, 196, 98, 58)), dashed, rect);
         }
 
         var bounds = SelectionBounds();
